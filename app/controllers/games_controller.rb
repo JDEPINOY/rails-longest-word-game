@@ -12,11 +12,12 @@ require 'json'
     time_total = end_time - Time.parse(params[:start])
     @answer = params[:answer]
     grid = params[:liste].split('')
+    choix = params[:liste].gsub(' ', ', ')
 
-    return @score = "Sorry but #{@answer} is not an english word" if english_word?(@answer) == false
-    return @score = "Your attempt is not in the grid" if in_grid?(@answer, grid) == false
+    return @score = "Sorry but <b>#{@answer}</b> is not an english word" if english_word?(@answer) == false
+    return @score = "Sorry but <b>#{@answer}</b> can not be built from #{choix}" if in_grid?(@answer, grid) == false
     result = scoring(@answer, time_total)
-    @score = "well done, your score is #{result}" #, score: scoring(@answer, time_p), time: time_p }
+    @score = "<Congratulations, <b>#{@answer}</b> is an english and your score is <b>#{result}</b>" #, score: scoring(@answer, time_p), time: time_p }
   end
 
   def generate_grid(grid_size)
@@ -31,7 +32,7 @@ require 'json'
   end
 
   def in_grid?(word, grid)
-    word.upcase.split('').all? { |element| word.count(element) <= grid.count(element) }
+    word.split('').all? { |element| word.count(element) <= grid.count(element) }
   end
 
   def scoring(word, time)

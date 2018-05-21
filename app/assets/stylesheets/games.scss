@@ -27,8 +27,19 @@
 
 }
 
-#question{
-  // margin: 20px 20px;
+#score{
+  background-image: url(https://ak2.picdn.net/shutterstock/videos/6626342/thumb/1.jpg);
+  height: 800px;
+  background-size: cover;
+}
+
+#score p{
+  font-size: 18px;
+}
+
+h1{
+  font-family: Sunflower;
+  background-color: lightgray;
 }
 
 input[type=text] {
